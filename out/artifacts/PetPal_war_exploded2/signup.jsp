@@ -208,158 +208,158 @@
     </style>
 </head>
 <body>
-    <jsp:include page="header.jsp"/>
-    
-    <main class="signup-section">
-        <div class="signup-header">
-            <h1>Create Your Account</h1>
-            <p>Join PetPal to find your perfect companion</p>
+<jsp:include page="header.jsp"/>
+
+<main class="signup-section">
+    <div class="signup-header">
+        <h1>Create Your Account</h1>
+        <p>Join PetPal to find your perfect companion</p>
+    </div>
+
+    <form class="signup-form" id="signupForm" onsubmit="return validateForm(event)">
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required>
+            <div class="error">Please enter your full name</div>
         </div>
 
-        <form class="signup-form" id="signupForm" onsubmit="return validateForm(event)">
-            <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" required>
-                <div class="error">Please enter your full name</div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error">Please enter a valid email address</div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <div class="error">Please enter a valid password</div>
+            <div class="password-requirements">
+                Password must contain:
+                <ul>
+                    <li>At least 8 characters</li>
+                    <li>One uppercase letter</li>
+                    <li>One lowercase letter</li>
+                    <li>One number</li>
+                    <li>One special character</li>
+                </ul>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
-                <div class="error">Please enter a valid email address</div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <div class="error">Passwords do not match</div>
+        </div>
+
+        <div class="form-group">
+            <label for="userType">I am a</label>
+            <select id="userType" name="userType" required>
+                <option value="">Select your role</option>
+                <option value="adopter">Pet Adopter</option>
+                <option value="shelter">Shelter/Rescue</option>
+                <option value="volunteer">Volunteer</option>
+            </select>
+            <div class="error">Please select your role</div>
+        </div>
+
+        <button type="submit" class="submit-button">Create Account</button>
+
+        <div class="login-link">
+            Already have an account? <a href="login.jsp">Log In</a>
+        </div>
+
+        <div class="social-signup">
+            <p>Or sign up with</p>
+            <div class="social-buttons">
+                <button type="button" class="social-button">
+                    <img src="images/google-icon.svg" alt="Google">
+                    Google
+                </button>
+                <button type="button" class="social-button">
+                    <img src="images/facebook-icon.svg" alt="Facebook">
+                    Facebook
+                </button>
             </div>
+        </div>
+    </form>
+</main>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-                <div class="error">Please enter a valid password</div>
-                <div class="password-requirements">
-                    Password must contain:
-                    <ul>
-                        <li>At least 8 characters</li>
-                        <li>One uppercase letter</li>
-                        <li>One lowercase letter</li>
-                        <li>One number</li>
-                        <li>One special character</li>
-                    </ul>
-                </div>
-            </div>
+<jsp:include page="footer.jsp"/>
 
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-                <div class="error">Passwords do not match</div>
-            </div>
+<script>
+    function validateForm(event) {
+        event.preventDefault();
+        let isValid = true;
+        const form = document.getElementById('signupForm');
 
-            <div class="form-group">
-                <label for="userType">I am a</label>
-                <select id="userType" name="userType" required>
-                    <option value="">Select your role</option>
-                    <option value="adopter">Pet Adopter</option>
-                    <option value="shelter">Shelter/Rescue</option>
-                    <option value="volunteer">Volunteer</option>
-                </select>
-                <div class="error">Please select your role</div>
-            </div>
+        // Reset all error states
+        form.querySelectorAll('.form-group').forEach(group => {
+            group.classList.remove('error');
+        });
 
-            <button type="submit" class="submit-button">Create Account</button>
-
-            <div class="login-link">
-                Already have an account? <a href="login.jsp">Log In</a>
-            </div>
-
-            <div class="social-signup">
-                <p>Or sign up with</p>
-                <div class="social-buttons">
-                    <button type="button" class="social-button">
-                        <img src="images/google-icon.svg" alt="Google">
-                        Google
-                    </button>
-                    <button type="button" class="social-button">
-                        <img src="images/facebook-icon.svg" alt="Facebook">
-                        Facebook
-                    </button>
-                </div>
-            </div>
-        </form>
-    </main>
-
-    <jsp:include page="footer.jsp"/>
-
-    <script>
-        function validateForm(event) {
-            event.preventDefault();
-            let isValid = true;
-            const form = document.getElementById('signupForm');
-            
-            // Reset all error states
-            form.querySelectorAll('.form-group').forEach(group => {
-                group.classList.remove('error');
-            });
-
-            // Validate full name
-            const fullName = document.getElementById('fullName');
-            if (fullName.value.trim().length < 2) {
-                fullName.parentElement.classList.add('error');
-                isValid = false;
-            }
-
-            // Validate email
-            const email = document.getElementById('email');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email.value)) {
-                email.parentElement.classList.add('error');
-                isValid = false;
-            }
-
-            // Validate password
-            const password = document.getElementById('password');
-            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-            if (!passwordRegex.test(password.value)) {
-                password.parentElement.classList.add('error');
-                isValid = false;
-            }
-
-            // Validate password confirmation
-            const confirmPassword = document.getElementById('confirmPassword');
-            if (password.value !== confirmPassword.value) {
-                confirmPassword.parentElement.classList.add('error');
-                isValid = false;
-            }
-
-            // Validate user type
-            const userType = document.getElementById('userType');
-            if (!userType.value) {
-                userType.parentElement.classList.add('error');
-                isValid = false;
-            }
-
-            if (isValid) {
-                // Here you would typically submit the form to your backend
-                // For now, we'll just show an alert
-                alert('Account created successfully! Please check your email to verify your account.');
-                form.reset();
-            }
-
-            return false;
+        // Validate full name
+        const fullName = document.getElementById('fullName');
+        if (fullName.value.trim().length < 2) {
+            fullName.parentElement.classList.add('error');
+            isValid = false;
         }
 
-        // Real-time password validation feedback
-        document.getElementById('password').addEventListener('input', function(e) {
-            const password = e.target.value;
-            const requirements = [
-                password.length >= 8,
-                /[A-Z]/.test(password),
-                /[a-z]/.test(password),
-                /\d/.test(password),
-                /[@$!%*?&]/.test(password)
-            ];
+        // Validate email
+        const email = document.getElementById('email');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+            email.parentElement.classList.add('error');
+            isValid = false;
+        }
 
-            const requirementsList = e.target.parentElement.querySelector('.password-requirements ul');
-            requirementsList.querySelectorAll('li').forEach((li, index) => {
-                li.style.color = requirements[index] ? '#28a745' : '#666';
-            });
+        // Validate password
+        const password = document.getElementById('password');
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password.value)) {
+            password.parentElement.classList.add('error');
+            isValid = false;
+        }
+
+        // Validate password confirmation
+        const confirmPassword = document.getElementById('confirmPassword');
+        if (password.value !== confirmPassword.value) {
+            confirmPassword.parentElement.classList.add('error');
+            isValid = false;
+        }
+
+        // Validate user type
+        const userType = document.getElementById('userType');
+        if (!userType.value) {
+            userType.parentElement.classList.add('error');
+            isValid = false;
+        }
+
+        if (isValid) {
+            // Here you would typically submit the form to your backend
+            // For now, we'll just show an alert
+            alert('Account created successfully! Please check your email to verify your account.');
+            form.reset();
+        }
+
+        return false;
+    }
+
+    // Real-time password validation feedback
+    document.getElementById('password').addEventListener('input', function(e) {
+        const password = e.target.value;
+        const requirements = [
+            password.length >= 8,
+            /[A-Z]/.test(password),
+            /[a-z]/.test(password),
+            /\d/.test(password),
+            /[@$!%*?&]/.test(password)
+        ];
+
+        const requirementsList = e.target.parentElement.querySelector('.password-requirements ul');
+        requirementsList.querySelectorAll('li').forEach((li, index) => {
+            li.style.color = requirements[index] ? '#28a745' : '#666';
         });
-    </script>
+    });
+</script>
 </body>
 </html> 

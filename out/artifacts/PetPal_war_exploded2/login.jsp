@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log-in</title>
-    <link rel="stylesheet" href="login.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <style>
         *{
@@ -28,12 +27,12 @@
             justify-content: center;
             align-items: center;
             margin-top: 15%;
-            background-image: url(images/Backg.jpg);
+            background-image: url(images/bg.jpg);
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             animation-name: body;
-            animation-duration: 1s;
+            animation-duration: 2s;
             animation-iteration-count: 1;
             animation-timing-function: cubic-bezier(0.5,0,0.5,1);
         }
@@ -45,13 +44,12 @@
             width: 420px;
             border-radius: 20px;
             padding: 35px 45px;
-
         }
         .Wrapper h1{
             font-size: 50px;
             text-align: center;
         }
-        .Wrapper h1 ::after{
+        .Wrapper h1::after{
             content: '';
             width: 30px;
             height: 4px;
@@ -60,7 +58,7 @@
             position: absolute;
             bottom: -12px;
             left: 50%;
-            transform:  translateX(-50%);
+            transform: translateX(-50%);
         }
         .Wrapper .inputbox{
             position: relative;
@@ -121,42 +119,38 @@
             font-size: 14px;
             text-align: center;
             margin-top: 20px;
-
         }
         .register-link p a{
             color: #fff;
             text-decoration: none;
             font-weight: 600;
-
         }
         .register-link p a:hover{
             text-decoration: underline;
         }
-
     </style>
-
 </head>
 <body>
 <div class="Wrapper">
-    <form action="LoginServlet" method="post">
+    <form action="">
         <h1>Log-in</h1>
         <div class="inputbox">
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" placeholder="Username" required>
             <i class='bx bxs-user'></i>
         </div>
         <div class="inputbox">
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" placeholder="Password" required>
             <i class='bx bxs-lock'></i>
         </div>
         <div class="remember-forget">
             <label>
-                <br><input type="checkbox" name="remember">Remember me
+                <br><input type="checkbox">Remember me
             </label>
-            <a href="forgotPassword.jsp"><br>Forgot Password?</a>
+            <a href=""><br>Forgot Password ?</a>
         </div>
         <button type="submit" class="button">Login</button>
         <div class="register-link">
-            <p>Don't have an account? <a href="register.jsp">Register</a></p>
+            <p>Don't have an account? <a href="" >Register</a></p>
         </div>
     </form>
 </div>

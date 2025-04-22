@@ -256,7 +256,7 @@
         <a href="contact.jsp">Contact</a>
         <a href="faq.jsp">Tips & FAQ</a>
         <a href="login.jsp">Login</a>
-            </nav>
+    </nav>
 </header>
 <main>
     <h2>Adopt a Pet Today</h2>
